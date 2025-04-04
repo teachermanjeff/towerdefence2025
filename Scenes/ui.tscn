@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk7b07i6fmn5m"]
+[gd_scene load_steps=5 format=3 uid="uid://dk7b07i6fmn5m"]
 
 [ext_resource type="Theme" uid="uid://c5cgbi7v3h3px" path="res://Other/Themes/hotbar_theme.tres" id="1_jxero"]
+[ext_resource type="Script" uid="uid://s8rnefemy2vx" path="res://Scripts/ui.gd" id="1_q7pk6"]
 [ext_resource type="Texture2D" uid="uid://c76up8q2gq2as" path="res://Images/icon.svg" id="2_qdvrb"]
 [ext_resource type="Script" uid="uid://d4figjxyvc7tq" path="res://Scripts/T1T1_button.gd" id="3_nf4gj"]
 
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_q7pk6")
 metadata/_edit_vertical_guides_ = [-4.0]
 
 [node name="Hotbar" type="TabContainer" parent="."]
