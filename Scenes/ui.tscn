@@ -36,10 +36,11 @@ offset_top = 9.0
 offset_right = 143.0
 offset_bottom = 139.0
 
-[node name="Button" type="Button" parent="Hotbar/Type1/Tower1" node_paths=PackedStringArray("sprite")]
+[node name="Button" type="Button" parent="Hotbar/Type1/Tower1" node_paths=PackedStringArray("sprite", "ui")]
 layout_mode = 2
 script = ExtResource("3_nf4gj")
 sprite = NodePath("Sprite2D")
+ui = NodePath("../../../..")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hotbar/Type1/Tower1/Button"]
 position = Vector2(65, 64)
