@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk7b07i6fmn5m"]
+[gd_scene load_steps=6 format=3 uid="uid://dk7b07i6fmn5m"]
 
 [ext_resource type="Theme" uid="uid://c5cgbi7v3h3px" path="res://Other/Themes/hotbar_theme.tres" id="1_jxero"]
-[ext_resource type="Script" uid="uid://s8rnefemy2vx" path="res://Scripts/ui.gd" id="1_q7pk6"]
 [ext_resource type="Texture2D" uid="uid://c76up8q2gq2as" path="res://Images/icon.svg" id="2_qdvrb"]
 [ext_resource type="Script" uid="uid://d4figjxyvc7tq" path="res://Scripts/T1T1_button.gd" id="3_nf4gj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nf4gj"]
+radius = 247.008
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2246s"]
+radius = 111.072
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -12,15 +17,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_q7pk6")
 metadata/_edit_vertical_guides_ = [-4.0]
 
 [node name="Hotbar" type="TabContainer" parent="."]
-custom_minimum_size = Vector2(1920, 0)
 layout_mode = 2
-offset_top = 895.0
-offset_right = 1920.0
-offset_bottom = 1077.0
+offset_top = 860.0
+offset_right = 540.0
+offset_bottom = 960.0
 theme = ExtResource("1_jxero")
 current_tab = 0
 drag_to_rearrange_enabled = true
@@ -33,63 +36,34 @@ metadata/_tab_index = 0
 layout_mode = 0
 offset_left = 13.0
 offset_top = 9.0
-offset_right = 143.0
-offset_bottom = 139.0
+offset_right = 63.0
+offset_bottom = 59.0
 
-[node name="Button" type="Button" parent="Hotbar/Type1/Tower1" node_paths=PackedStringArray("sprite", "ui")]
+[node name="Button" type="Button" parent="Hotbar/Type1/Tower1" node_paths=PackedStringArray("sprite", "aoe_collision", "deadzone_collision")]
 layout_mode = 2
 script = ExtResource("3_nf4gj")
 sprite = NodePath("Sprite2D")
-ui = NodePath("../../../..")
+aoe_collision = NodePath("Sprite2D/AOE/CollisionShape2D")
+deadzone_collision = NodePath("Sprite2D/Deadzone/CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hotbar/Type1/Tower1/Button"]
-position = Vector2(65, 64)
-scale = Vector2(0.90625, 0.921875)
+position = Vector2(25, 25)
+scale = Vector2(0.326, 0.331)
 texture = ExtResource("2_qdvrb")
 
-[node name="Tower2" type="PanelContainer" parent="Hotbar/Type1"]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 9.0
-offset_right = 280.0
-offset_bottom = 139.0
+[node name="AOE" type="Area2D" parent="Hotbar/Type1/Tower1/Button/Sprite2D" groups=["Placable"]]
 
-[node name="Button" type="Button" parent="Hotbar/Type1/Tower2"]
-layout_mode = 2
-button_mask = 0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Type1/Tower1/Button/Sprite2D/AOE"]
+visible = false
+shape = SubResource("CircleShape2D_nf4gj")
+debug_color = Color(1, 1, 1, 0.42)
 
-[node name="Tower3" type="PanelContainer" parent="Hotbar/Type1"]
-layout_mode = 0
-offset_left = 287.0
-offset_top = 9.0
-offset_right = 417.0
-offset_bottom = 139.0
+[node name="Deadzone" type="Area2D" parent="Hotbar/Type1/Tower1/Button/Sprite2D" groups=["Placable"]]
 
-[node name="Button" type="Button" parent="Hotbar/Type1/Tower3"]
-layout_mode = 2
-button_mask = 0
-
-[node name="Tower4" type="PanelContainer" parent="Hotbar/Type1"]
-layout_mode = 0
-offset_left = 424.0
-offset_top = 9.0
-offset_right = 554.0
-offset_bottom = 139.0
-
-[node name="Button" type="Button" parent="Hotbar/Type1/Tower4"]
-layout_mode = 2
-button_mask = 0
-
-[node name="Tower5" type="PanelContainer" parent="Hotbar/Type1"]
-layout_mode = 0
-offset_left = 561.0
-offset_top = 9.0
-offset_right = 691.0
-offset_bottom = 139.0
-
-[node name="Button" type="Button" parent="Hotbar/Type1/Tower5"]
-layout_mode = 2
-button_mask = 0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Type1/Tower1/Button/Sprite2D/Deadzone"]
+visible = false
+shape = SubResource("CircleShape2D_2246s")
+debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="Type2" type="Control" parent="Hotbar"]
 visible = false
@@ -272,3 +246,5 @@ layout_mode = 2
 button_mask = 0
 
 [connection signal="pressed" from="Hotbar/Type1/Tower1/Button" to="Hotbar/Type1/Tower1/Button" method="_on_pressed"]
+[connection signal="area_entered" from="Hotbar/Type1/Tower1/Button/Sprite2D/Deadzone" to="Hotbar/Type1/Tower1/Button" method="_on_deadzone_area_entered"]
+[connection signal="area_exited" from="Hotbar/Type1/Tower1/Button/Sprite2D/Deadzone" to="Hotbar/Type1/Tower1/Button" method="_on_deadzone_area_exited"]

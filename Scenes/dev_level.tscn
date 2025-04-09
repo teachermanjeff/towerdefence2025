@@ -1,31 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk3kyhfr2jcoo"]
+[gd_scene load_steps=4 format=3 uid="uid://bk3kyhfr2jcoo"]
 
 [ext_resource type="PackedScene" uid="uid://dk7b07i6fmn5m" path="res://Scenes/ui.tscn" id="1_0ehpy"]
-[ext_resource type="PackedScene" uid="uid://g1evq656kclf" path="res://Scenes/test_tower.tscn" id="2_68lmx"]
-
-[sub_resource type="GDScript" id="GDScript_lc1oi"]
-script/source = "extends Area2D
-"
+[ext_resource type="Script" uid="uid://cawwmce15mnm" path="res://Scripts/towers.gd" id="2_6j040"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8od7v"]
-size = Vector2(1365, 371)
+size = Vector2(415, 371)
 
 [node name="Dev Level" type="Node2D"]
 
 [node name="Placable Area" type="Area2D" parent="." groups=["Placable"]]
-script = SubResource("GDScript_lc1oi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Placable Area"]
-position = Vector2(1013.5, 483.5)
+position = Vector2(290.5, 484)
 shape = SubResource("RectangleShape2D_8od7v")
 
-[node name="UI" parent="." node_paths=PackedStringArray("placable_area") instance=ExtResource("1_0ehpy")]
-placable_area = NodePath("../Placable Area")
+[node name="UI" parent="." instance=ExtResource("1_0ehpy")]
 
-[node name="Towers" type="Node" parent="."]
-
-[node name="Test Tower" parent="Towers" instance=ExtResource("2_68lmx")]
-visible = false
+[node name="Towers" type="Node2D" parent="."]
+script = ExtResource("2_6j040")
 
 [connection signal="mouse_entered" from="Placable Area" to="UI" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Placable Area" to="UI" method="_on_area_2d_mouse_exited"]
