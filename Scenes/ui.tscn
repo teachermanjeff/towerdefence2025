@@ -39,11 +39,13 @@ offset_top = 9.0
 offset_right = 63.0
 offset_bottom = 59.0
 
-[node name="Button" type="Button" parent="Hotbar/Type1/Tower1" node_paths=PackedStringArray("sprite", "aoe_collision", "deadzone_collision")]
+[node name="Button" type="Button" parent="Hotbar/Type1/Tower1" node_paths=PackedStringArray("sprite", "aoe", "aoe_collision", "deadzone", "deadzone_collision")]
 layout_mode = 2
 script = ExtResource("3_nf4gj")
 sprite = NodePath("Sprite2D")
+aoe = NodePath("Sprite2D/AOE")
 aoe_collision = NodePath("Sprite2D/AOE/CollisionShape2D")
+deadzone = NodePath("Sprite2D/Deadzone")
 deadzone_collision = NodePath("Sprite2D/Deadzone/CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hotbar/Type1/Tower1/Button"]
@@ -54,14 +56,12 @@ texture = ExtResource("2_qdvrb")
 [node name="AOE" type="Area2D" parent="Hotbar/Type1/Tower1/Button/Sprite2D" groups=["Placable"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Type1/Tower1/Button/Sprite2D/AOE"]
-visible = false
 shape = SubResource("CircleShape2D_nf4gj")
 debug_color = Color(1, 1, 1, 0.42)
 
 [node name="Deadzone" type="Area2D" parent="Hotbar/Type1/Tower1/Button/Sprite2D" groups=["Placable"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Type1/Tower1/Button/Sprite2D/Deadzone"]
-visible = false
 shape = SubResource("CircleShape2D_2246s")
 debug_color = Color(1, 0, 0, 0.419608)
 

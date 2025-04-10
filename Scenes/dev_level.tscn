@@ -19,5 +19,5 @@ shape = SubResource("RectangleShape2D_8od7v")
 [node name="Towers" type="Node2D" parent="."]
 script = ExtResource("2_6j040")
 
-[connection signal="mouse_entered" from="Placable Area" to="UI" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Placable Area" to="UI" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Placable Area" to="Towers" method="_on_placable_area_mouse_entered"]
+[connection signal="mouse_exited" from="Placable Area" to="Towers" method="_on_placable_area_mouse_exited"]

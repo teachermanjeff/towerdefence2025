@@ -2,7 +2,9 @@ extends Button
 
 # Export vars
 @export var sprite : Sprite2D
+@export var aoe : Area2D
 @export var aoe_collision : CollisionShape2D
+@export var deadzone : Area2D
 @export var deadzone_collision : CollisionShape2D
 
 # Vars
@@ -33,7 +35,9 @@ func _on_pressed() -> void:
 	Global.is_picked_up = true
 
 func _on_deadzone_area_entered(area: Area2D) -> void:
-	pass
+	if area == deadzone:
+		print("Lock")
 
 func _on_deadzone_area_exited(area: Area2D) -> void:
-	pass # Replace with function body.
+	if area != deadzone:
+		print("Unlock")
