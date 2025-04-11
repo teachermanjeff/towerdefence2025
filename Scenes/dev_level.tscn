@@ -15,6 +15,7 @@ position = Vector2(290.5, 484)
 shape = SubResource("RectangleShape2D_8od7v")
 
 [node name="UI" parent="." instance=ExtResource("1_0ehpy")]
+metadata/_edit_use_anchors_ = true
 
 [node name="Towers" type="Node2D" parent="."]
 script = ExtResource("2_6j040")

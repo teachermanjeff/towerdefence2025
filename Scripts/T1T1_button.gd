@@ -22,8 +22,9 @@ func _process(delta: float) -> void:
 		aoe_collision.visible = true
 		deadzone_collision.visible = true
 
-	# Return to origin if right mouse button is pressed
-	if Input.is_action_pressed("Right Click"):
+	# Return to origin if tower is placed
+	if Input.is_action_pressed("Left Click") and Global.is_picked_up == true and Global.within_placable == true and Global.is_placable == true:
+		await get_tree().create_timer(0.1).timeout
 		sprite.position = origin
 		Global.is_picked_up = false
 
@@ -35,9 +36,11 @@ func _on_pressed() -> void:
 	Global.is_picked_up = true
 
 func _on_deadzone_area_entered(area: Area2D) -> void:
-	if area == deadzone:
-		print("Lock")
+	if !area.is_in_group("Placable"):
+		Global.is_placable = false
+		print(Global.is_placable, "1")
 
 func _on_deadzone_area_exited(area: Area2D) -> void:
-	if area != deadzone:
-		print("Unlock")
+	if !area.is_in_group("Placable") and Global.within_placable == true:
+		Global.is_placable = true
+		print(Global.is_placable, "2")
