@@ -10,5 +10,3 @@ func _process(delta: float) -> void:
 	
 	self.rotation = angle
 	
-	if $RayCast2D.is_colliding():
-		print("collision")

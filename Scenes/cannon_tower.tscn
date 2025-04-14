@@ -1,17 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://yjuc1nhlagqi"]
+[gd_scene load_steps=4 format=3 uid="uid://yjuc1nhlagqi"]
 
 [ext_resource type="Texture2D" uid="uid://bhipwtb31s372" path="res://Images/tower_base.png" id="1_5xbaa"]
 [ext_resource type="Texture2D" uid="uid://dgreovrgrg2s8" path="res://Images/CannonTop.png" id="2_oclca"]
 [ext_resource type="Script" uid="uid://cy1dalg3eopdr" path="res://Scenes/cannon_top.gd" id="3_oclca"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oclca"]
-
 [node name="Cannon Tower" type="Node2D"]
-position = Vector2(269, 515)
 rotation = -1.5708
 scale = Vector2(3, 3)
 
-[node name="CannonBase" type="Sprite2D" parent="."]
+[node name="Base" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_5xbaa")
@@ -21,13 +18,3 @@ texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_oclca")
 script = ExtResource("3_oclca")
-
-[node name="RayCast2D" type="RayCast2D" parent="CannonTop"]
-
-[node name="test" type="Node2D" parent="."]
-
-[node name="RigidBody2D" type="RigidBody2D" parent="test"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="test/RigidBody2D"]
-position = Vector2(52.3333, 62)
-shape = SubResource("RectangleShape2D_oclca")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyxlu3e3pml34"]
+
+[ext_resource type="Texture2D" uid="uid://bhipwtb31s372" path="res://Images/tower_base.png" id="1_jg6pu"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Base" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_jg6pu")
