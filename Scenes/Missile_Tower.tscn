@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyxlu3e3pml34"]
+[gd_scene load_steps=5 format=3 uid="uid://dyxlu3e3pml34"]
 
 [ext_resource type="Texture2D" uid="uid://bhipwtb31s372" path="res://Images/tower_base.png" id="1_jg6pu"]
+[ext_resource type="Texture2D" uid="uid://bfn7dk7aq6nbp" path="res://Images/Rocket_loaded.png" id="2_eemth"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ec556"]
+radius = 46.8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ig4md"]
+radius = 21.2038
 
 [node name="Node2D" type="Node2D"]
 
@@ -8,3 +15,20 @@
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_jg6pu")
+
+[node name="AOE" type="Area2D" parent="Base" groups=["Placable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/AOE"]
+shape = SubResource("CircleShape2D_ec556")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="Deadzone" type="Area2D" parent="Base"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/Deadzone"]
+shape = SubResource("CircleShape2D_ig4md")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_eemth")
