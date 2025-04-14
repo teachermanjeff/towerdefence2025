@@ -1,33 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://yjuc1nhlagqi"]
+[gd_scene load_steps=6 format=3 uid="uid://yjuc1nhlagqi"]
 
 [ext_resource type="Texture2D" uid="uid://bhipwtb31s372" path="res://Images/tower_base.png" id="1_5xbaa"]
+[ext_resource type="Script" uid="uid://cv0olor4i3syg" path="res://Scripts/cannon_tower.gd" id="1_oclca"]
 [ext_resource type="Texture2D" uid="uid://dgreovrgrg2s8" path="res://Images/CannonTop.png" id="2_oclca"]
-[ext_resource type="Script" uid="uid://cy1dalg3eopdr" path="res://Scenes/cannon_top.gd" id="3_oclca"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oclca"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_oclca"]
+radius = 56.001
 
-[node name="Cannon Tower" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_40qog"]
+radius = 20.0028
+
+[node name="Cannon Tower" type="Node2D" node_paths=PackedStringArray("tower_top")]
 position = Vector2(269, 515)
-rotation = -1.5708
+rotation = 3.14159
 scale = Vector2(3, 3)
+script = ExtResource("1_oclca")
+tower_top = NodePath("CannonTop")
 
 [node name="CannonBase" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_5xbaa")
 
 [node name="CannonTop" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
 texture = ExtResource("2_oclca")
-script = ExtResource("3_oclca")
 
-[node name="RayCast2D" type="RayCast2D" parent="CannonTop"]
+[node name="AOE" type="Area2D" parent="." groups=["Placable"]]
+visible = false
 
-[node name="test" type="Node2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AOE"]
+shape = SubResource("CircleShape2D_oclca")
+debug_color = Color(1, 1, 1, 0.42)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="test"]
+[node name="Deadzone" type="Area2D" parent="."]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="test/RigidBody2D"]
-position = Vector2(52.3333, 62)
-shape = SubResource("RectangleShape2D_oclca")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone"]
+shape = SubResource("CircleShape2D_40qog")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[connection signal="body_entered" from="AOE" to="." method="_on_aoe_body_entered"]
+[connection signal="body_exited" from="AOE" to="." method="_on_aoe_body_exited"]

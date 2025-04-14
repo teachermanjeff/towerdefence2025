@@ -1,11 +1,15 @@
 extends Node2D
 
+@export var tower_top : Sprite2D
+
 var looking_at = false
 var enemy 
 
 func _process(delta: float) -> void:
 	if looking_at == true:
-		look_at(enemy.global_position)
+		tower_top.look_at(-enemy.global_position)
+
+	print(tower_top.rotation_degrees)
 
 func _on_aoe_body_entered(body: Node2D) -> void:
 	enemy = body
@@ -13,4 +17,4 @@ func _on_aoe_body_entered(body: Node2D) -> void:
 
 func _on_aoe_body_exited(body: Node2D) -> void:
 	looking_at = false
-	rotation = 0
+	tower_top.rotation = 0

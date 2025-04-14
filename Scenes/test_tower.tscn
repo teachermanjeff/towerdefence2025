@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://g1evq656kclf"]
 
-[ext_resource type="Script" uid="uid://b8mlrx7qva2hl" path="res://Scripts/test_tower.gd" id="1_gl1n5"]
+[ext_resource type="Script" uid="uid://bmpm5i3wbyepv" path="res://Scripts/test_tower.gd" id="1_gl1n5"]
 [ext_resource type="Texture2D" uid="uid://c76up8q2gq2as" path="res://Images/icon.svg" id="1_rdlkp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gl1n5"]
@@ -17,15 +17,19 @@ script = ExtResource("1_gl1n5")
 texture = ExtResource("1_rdlkp")
 
 [node name="AOE" type="Area2D" parent="Sprite" groups=["Placable"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/AOE"]
 shape = SubResource("CircleShape2D_gl1n5")
 debug_color = Color(1, 1, 1, 0.42)
 
 [node name="Deadzone" type="Area2D" parent="Sprite"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Deadzone"]
 shape = SubResource("CircleShape2D_m4sgl")
 debug_color = Color(1, 0, 0, 0.419608)
 
+[connection signal="body_entered" from="Sprite/AOE" to="." method="_on_aoe_body_entered"]
+[connection signal="body_exited" from="Sprite/AOE" to="." method="_on_aoe_body_exited"]
 [connection signal="area_entered" from="Sprite/Deadzone" to="." method="_on_deadzone_area_entered"]
