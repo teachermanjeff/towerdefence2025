@@ -16,7 +16,7 @@ script = ExtResource("1_gl1n5")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_rdlkp")
 
-[node name="AOE" type="Area2D" parent="Sprite" groups=["Placable"]]
+[node name="AOE" type="Area2D" parent="Sprite"]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/AOE"]

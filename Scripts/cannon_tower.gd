@@ -7,9 +7,7 @@ var enemy
 
 func _process(delta: float) -> void:
 	if looking_at == true:
-		tower_top.look_at(-enemy.global_position)
-
-	print(tower_top.rotation_degrees)
+		tower_top.look_at(enemy.global_position)
 
 func _on_aoe_body_entered(body: Node2D) -> void:
 	enemy = body

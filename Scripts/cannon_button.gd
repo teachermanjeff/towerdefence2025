@@ -49,8 +49,10 @@ func _on_pressed() -> void:
 func _on_deadzone_area_entered(area: Area2D) -> void:
 	if !area.is_in_group("Placable"):
 		Global.is_placable = false
+		print("false 1")
 
 # When deadzone exited make placable true
 func _on_deadzone_area_exited(area: Area2D) -> void:
 	if !area.is_in_group("Placable") and Global.within_placable == true:
 		Global.is_placable = true
+		print("true 1")

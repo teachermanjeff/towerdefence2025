@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://c5cgbi7v3h3px" path="res://Other/Themes/hotbar_theme.tres" id="1_jxero"]
 [ext_resource type="Texture2D" uid="uid://c76up8q2gq2as" path="res://Images/icon.svg" id="2_qdvrb"]
-[ext_resource type="Script" uid="uid://d4figjxyvc7tq" path="res://Scripts/T1T1_button.gd" id="3_nf4gj"]
+[ext_resource type="Script" uid="uid://d4figjxyvc7tq" path="res://Scripts/test_button.gd" id="3_nf4gj"]
 [ext_resource type="Script" uid="uid://baam28arlek2g" path="res://Scripts/cannon_button.gd" id="4_m78vo"]
 [ext_resource type="Texture2D" uid="uid://bhipwtb31s372" path="res://Images/tower_base.png" id="4_q7pk6"]
 [ext_resource type="Texture2D" uid="uid://dgreovrgrg2s8" path="res://Images/CannonTop.png" id="5_m78vo"]
@@ -93,6 +93,7 @@ deadzone_collision = NodePath("Cannon/Deadzone/CollisionShape2D")
 [node name="Cannon" type="Sprite2D" parent="Hotbar/Type1/Tower2/Button"]
 texture_filter = 1
 position = Vector2(25, 25)
+rotation = 3.14159
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("4_q7pk6")
 

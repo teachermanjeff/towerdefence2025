@@ -11,8 +11,8 @@ radius = 60.337
 radius = 9.33333
 
 [node name="Cannon Tower" type="Node2D" node_paths=PackedStringArray("tower_top")]
-rotation = -1.5708
-scale = Vector2(3, 3)
+rotation = 3.14159
+scale = Vector2(2.5, 2.5)
 script = ExtResource("1_oclca")
 tower_top = NodePath("CannonTop")
 
@@ -37,3 +37,9 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone"]
 shape = SubResource("CircleShape2D_40qog")
 debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
+
+[connection signal="body_entered" from="AOE" to="." method="_on_aoe_body_entered"]
+[connection signal="body_exited" from="AOE" to="." method="_on_aoe_body_exited"]
