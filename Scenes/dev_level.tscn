@@ -32,13 +32,18 @@ script = ExtResource("2_6j040")
 position = Vector2(0, 463)
 curve = SubResource("Curve2D_68lmx")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Test Path"]
+[node name="Test Path" type="PathFollow2D" parent="Test Path" node_paths=PackedStringArray("marker")]
 position = Vector2(54, 68)
 rotation = 0.00239808
 script = ExtResource("3_d3jx4")
+marker = NodePath("../Marker2D")
 speed = 5.0
 
-[node name="Test Enemy" parent="Test Path/PathFollow2D" instance=ExtResource("4_d3jx4")]
+[node name="Test Enemy" parent="Test Path/Test Path" node_paths=PackedStringArray("track") instance=ExtResource("4_d3jx4")]
+track = NodePath("..")
+
+[node name="Marker2D" type="Marker2D" parent="Test Path"]
+position = Vector2(54, 68)
 
 [connection signal="mouse_entered" from="Placable Area" to="Towers" method="_on_placable_area_mouse_entered"]
 [connection signal="mouse_exited" from="Placable Area" to="Towers" method="_on_placable_area_mouse_exited"]
