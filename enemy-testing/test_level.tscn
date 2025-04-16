@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://18yqmgtuseaj"]
+
+[ext_resource type="Texture2D" uid="uid://5edqgpwl2ohd" path="res://icon.svg" id="1_1c2mv"]
+[ext_resource type="PackedScene" uid="uid://cr3t621qrqduv" path="res://test_enemy.tscn" id="2_f7g2b"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="DefenceTower" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_1c2mv")
+
+[node name="Node2D" parent="." instance=ExtResource("2_f7g2b")]

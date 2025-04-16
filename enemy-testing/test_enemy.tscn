@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cr3t621qrqduv"]
+
+[ext_resource type="Texture2D" uid="uid://ctmih0ajl7ncg" path="res://enemyplaceholder.png" id="1_21655"]
+[ext_resource type="Script" uid="uid://be4j2hritk8pa" path="res://enemybasic.gd" id="2_mojga"]
+
+[sub_resource type="Curve2D" id="Curve2D_yikbh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 998, 643, 3.63, 16.94, -3.63, -16.94, 772, 501, 8.47, 32.67, -8.47, -32.67, 922, 375, -27.83, 55.66, 27.83, -55.66, 577, 251, 15.73, 41.14, -15.73, -41.14, 849, 73, 0, 0, 0, 0, 582, -1)
+}
+point_count = 6
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ue2om"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_21655")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="EnemyPath" type="Path2D" parent="."]
+position = Vector2(142, 0)
+curve = SubResource("Curve2D_yikbh")
+
+[node name="EnemyPathBox" type="PathFollow2D" parent="EnemyPath"]
+position = Vector2(998, 643)
+rotation = -2.58061
+script = ExtResource("2_mojga")
+
+[node name="TestEnemyBasic" type="AnimatedSprite2D" parent="EnemyPath/EnemyPathBox"]
+position = Vector2(2.54021, -1.59606)
+sprite_frames = SubResource("SpriteFrames_ue2om")
+animation = &"new_animation"
