@@ -37,18 +37,18 @@ theme = ExtResource("1_jxero")
 current_tab = 0
 drag_to_rearrange_enabled = true
 
-[node name="Type1" type="Control" parent="Hotbar"]
+[node name="Ballistic" type="Control" parent="Hotbar"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Tower1" type="PanelContainer" parent="Hotbar/Type1"]
+[node name="Tower1" type="PanelContainer" parent="Hotbar/Ballistic"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 9.0
 offset_right = 65.0
 offset_bottom = 59.0
 
-[node name="Button" type="Button" parent="Hotbar/Type1/Tower1" node_paths=PackedStringArray("sprite", "aoe", "aoe_collision", "deadzone", "deadzone_collision")]
+[node name="Button" type="Button" parent="Hotbar/Ballistic/Tower1" node_paths=PackedStringArray("sprite", "aoe", "aoe_collision", "deadzone", "deadzone_collision")]
 layout_mode = 2
 script = ExtResource("3_nf4gj")
 sprite = NodePath("Sprite2D")
@@ -57,31 +57,31 @@ aoe_collision = NodePath("Sprite2D/AOE/CollisionShape2D")
 deadzone = NodePath("Sprite2D/Deadzone")
 deadzone_collision = NodePath("Sprite2D/Deadzone/CollisionShape2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="Hotbar/Type1/Tower1/Button"]
+[node name="Sprite2D" type="Sprite2D" parent="Hotbar/Ballistic/Tower1/Button"]
 position = Vector2(25, 25)
 scale = Vector2(0.326, 0.331)
 texture = ExtResource("2_qdvrb")
 
-[node name="AOE" type="Area2D" parent="Hotbar/Type1/Tower1/Button/Sprite2D" groups=["Placable"]]
+[node name="AOE" type="Area2D" parent="Hotbar/Ballistic/Tower1/Button/Sprite2D" groups=["Placable"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Type1/Tower1/Button/Sprite2D/AOE"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Ballistic/Tower1/Button/Sprite2D/AOE"]
 shape = SubResource("CircleShape2D_nf4gj")
 debug_color = Color(1, 1, 1, 0.42)
 
-[node name="Deadzone" type="Area2D" parent="Hotbar/Type1/Tower1/Button/Sprite2D"]
+[node name="Deadzone" type="Area2D" parent="Hotbar/Ballistic/Tower1/Button/Sprite2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Type1/Tower1/Button/Sprite2D/Deadzone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Ballistic/Tower1/Button/Sprite2D/Deadzone"]
 shape = SubResource("CircleShape2D_2246s")
 debug_color = Color(1, 0, 0, 0.419608)
 
-[node name="Tower2" type="PanelContainer" parent="Hotbar/Type1"]
+[node name="Tower2" type="PanelContainer" parent="Hotbar/Ballistic"]
 layout_mode = 0
 offset_left = 75.0
 offset_top = 9.0
 offset_right = 125.0
 offset_bottom = 59.0
 
-[node name="Button" type="Button" parent="Hotbar/Type1/Tower2" node_paths=PackedStringArray("sprite", "aoe", "aoe_collision", "deadzone", "deadzone_collision")]
+[node name="Button" type="Button" parent="Hotbar/Ballistic/Tower2" node_paths=PackedStringArray("sprite", "aoe", "aoe_collision", "deadzone", "deadzone_collision")]
 layout_mode = 2
 script = ExtResource("4_m78vo")
 sprite = NodePath("Cannon")
@@ -90,27 +90,27 @@ aoe_collision = NodePath("Cannon/AOE/CollisionShape2D")
 deadzone = NodePath("Cannon/Deadzone")
 deadzone_collision = NodePath("Cannon/Deadzone/CollisionShape2D")
 
-[node name="Cannon" type="Sprite2D" parent="Hotbar/Type1/Tower2/Button"]
+[node name="Cannon" type="Sprite2D" parent="Hotbar/Ballistic/Tower2/Button"]
 texture_filter = 1
 position = Vector2(25, 25)
 rotation = 3.14159
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("4_q7pk6")
 
-[node name="CannonTop" type="Sprite2D" parent="Hotbar/Type1/Tower2/Button/Cannon"]
+[node name="CannonTop" type="Sprite2D" parent="Hotbar/Ballistic/Tower2/Button/Cannon"]
 texture_filter = 1
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_m78vo")
 
-[node name="AOE" type="Area2D" parent="Hotbar/Type1/Tower2/Button/Cannon" groups=["Placable"]]
+[node name="AOE" type="Area2D" parent="Hotbar/Ballistic/Tower2/Button/Cannon" groups=["Placable"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Type1/Tower2/Button/Cannon/AOE"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Ballistic/Tower2/Button/Cannon/AOE"]
 shape = SubResource("CircleShape2D_m78vo")
 debug_color = Color(1, 1, 1, 0.42)
 
-[node name="Deadzone" type="Area2D" parent="Hotbar/Type1/Tower2/Button/Cannon"]
+[node name="Deadzone" type="Area2D" parent="Hotbar/Ballistic/Tower2/Button/Cannon"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Type1/Tower2/Button/Cannon/Deadzone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Ballistic/Tower2/Button/Cannon/Deadzone"]
 shape = SubResource("CircleShape2D_smcll")
 debug_color = Color(1, 0, 0, 0.419608)
 
@@ -294,9 +294,9 @@ offset_bottom = 139.0
 layout_mode = 2
 button_mask = 0
 
-[connection signal="pressed" from="Hotbar/Type1/Tower1/Button" to="Hotbar/Type1/Tower1/Button" method="_on_pressed"]
-[connection signal="area_entered" from="Hotbar/Type1/Tower1/Button/Sprite2D/Deadzone" to="Hotbar/Type1/Tower1/Button" method="_on_deadzone_area_entered"]
-[connection signal="area_exited" from="Hotbar/Type1/Tower1/Button/Sprite2D/Deadzone" to="Hotbar/Type1/Tower1/Button" method="_on_deadzone_area_exited"]
-[connection signal="pressed" from="Hotbar/Type1/Tower2/Button" to="Hotbar/Type1/Tower2/Button" method="_on_pressed"]
-[connection signal="area_entered" from="Hotbar/Type1/Tower2/Button/Cannon/Deadzone" to="Hotbar/Type1/Tower2/Button" method="_on_deadzone_area_entered"]
-[connection signal="area_exited" from="Hotbar/Type1/Tower2/Button/Cannon/Deadzone" to="Hotbar/Type1/Tower2/Button" method="_on_deadzone_area_exited"]
+[connection signal="pressed" from="Hotbar/Ballistic/Tower1/Button" to="Hotbar/Ballistic/Tower1/Button" method="_on_pressed"]
+[connection signal="area_entered" from="Hotbar/Ballistic/Tower1/Button/Sprite2D/Deadzone" to="Hotbar/Ballistic/Tower1/Button" method="_on_deadzone_area_entered"]
+[connection signal="area_exited" from="Hotbar/Ballistic/Tower1/Button/Sprite2D/Deadzone" to="Hotbar/Ballistic/Tower1/Button" method="_on_deadzone_area_exited"]
+[connection signal="pressed" from="Hotbar/Ballistic/Tower2/Button" to="Hotbar/Ballistic/Tower2/Button" method="_on_pressed"]
+[connection signal="area_entered" from="Hotbar/Ballistic/Tower2/Button/Cannon/Deadzone" to="Hotbar/Ballistic/Tower2/Button" method="_on_deadzone_area_entered"]
+[connection signal="area_exited" from="Hotbar/Ballistic/Tower2/Button/Cannon/Deadzone" to="Hotbar/Ballistic/Tower2/Button" method="_on_deadzone_area_exited"]

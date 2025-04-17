@@ -1,15 +1,16 @@
-extends CharacterBody2D
-
-var enemy = preload("res://Scenes/test_enemy.tscn")
-
-@export var track : PathFollow2D
+extends PathFollow2D
 
 @export var health : float
+@export var speed : float
 
 func _process(delta: float) -> void:
+	progress += speed
+
 	if health <= 0:
 		die()
 
+	if progress == 100:
+		die()
+
 func die():
-	track.spawn_enemy(enemy)
 	queue_free()

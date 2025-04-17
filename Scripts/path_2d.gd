@@ -1,17 +1,12 @@
-extends PathFollow2D
-
-@export var marker : Marker2D
-
-@export var speed : float
+extends Path2D
 
 var enemy = preload("res://Scenes/test_enemy.tscn")
 
 func _process(delta: float) -> void:
-	progress += speed
-	if progress >= 50:
+
+	if Input.is_action_just_pressed("Right Click"):
 		spawn_enemy(enemy)
 
 func spawn_enemy(enemy):
 	var enemy_temp = enemy.instantiate()
-	enemy_temp.global_position = marker.position
 	add_child(enemy_temp)

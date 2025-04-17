@@ -11,13 +11,15 @@ radius = 190.4
 [sub_resource type="CircleShape2D" id="CircleShape2D_40qog"]
 radius = 9.33333
 
-[node name="Cannon Tower" type="Node2D" node_paths=PackedStringArray("tower_top", "muzzle_flash")]
+[node name="Cannon Tower" type="Node2D" node_paths=PackedStringArray("tower_top", "muzzle_flash", "aoe")]
+rotation = 3.14159
 scale = Vector2(2.5, 2.5)
 script = ExtResource("1_oclca")
 tower_top = NodePath("CannonTop")
 muzzle_flash = NodePath("CannonTop/Muzzle Flash")
-fireSpeed = 1.0
-damage = 3.0
+aoe = NodePath("AOE")
+fireSpeed = 0.5
+damage = 5.0
 
 [node name="Base" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -25,14 +27,12 @@ texture = ExtResource("1_5xbaa")
 
 [node name="CannonTop" type="Sprite2D" parent="."]
 texture_filter = 1
-rotation = 1.5708
 texture = ExtResource("2_oclca")
 
 [node name="Muzzle Flash" type="Sprite2D" parent="CannonTop"]
 visible = false
 texture_filter = 1
 position = Vector2(-3.95488e-05, 15.6)
-scale = Vector2(1, 1)
 texture = ExtResource("4_40qog")
 
 [node name="AOE" type="Area2D" parent="." groups=["Placable"]]

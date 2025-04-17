@@ -6,13 +6,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bs22l"]
 size = Vector2(36, 36)
 
-[node name="Test Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="PathFollow2D"]
+rotates = false
+loop = false
 script = ExtResource("1_bs22l")
 health = 10.0
+speed = 3.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Enemy"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 scale = Vector2(0.285, 0.285)
 texture = ExtResource("1_r1vdb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_bs22l")

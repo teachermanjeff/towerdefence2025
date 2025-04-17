@@ -27,6 +27,7 @@ window/size/viewport_height=960
 [global_group]
 
 Placable=""
+Enemy=""
 
 [input]
 
