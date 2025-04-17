@@ -11,24 +11,29 @@ extends Node2D
 var looking_at = false
 var enemy 
 
+var arr = []
+
 func _process(delta: float) -> void:
 	if looking_at == true:
 		tower_top.look_at(enemy.global_position)
 		#$CannonTop.look_at(get_global_mouse_position()) # Debug
-		tower_top.rotate(-90)
+		tower_top.rotate(deg_to_rad(-90))
 
-func is_even(number):
-	return number % 2 == 0
+func sort_ascending(a, b):
+	if a[1] < b[1]:
+		return true
+	return false
 
 func _on_aoe_body_entered(body: Node2D) -> void:
 	enemy = body
 	looking_at = true
 
 	for x in aoe.get_overlapping_bodies():
-		var Array = (tower_top.position - x.global_position).length() 
-		print(Array)
-
-	var curr_enemy 
+		arr.append((tower_top.position - x.global_position).length())
+	print(arr)
+	
+	arr.sort_custom(sort_ascending)
+	print(arr)
 
 	while looking_at == true:
 		fire(enemy)
@@ -39,9 +44,11 @@ func _on_aoe_body_exited(body: Node2D) -> void:
 	tower_top.rotation = 0
 
 func fire(target):
+
 	# Muzzle Flash
 	muzzle_flash.visible = true
 	await get_tree().create_timer(0.1).timeout
 	muzzle_flash.visible = false
 
+	# Deal Damage
 	enemy.get_parent().health -= damage

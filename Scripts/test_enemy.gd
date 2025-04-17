@@ -4,12 +4,13 @@ extends PathFollow2D
 @export var speed : float
 
 func _process(delta: float) -> void:
+	var pos = global_position
 	progress += speed
 
 	if health <= 0:
 		die()
 
-	if progress == 100:
+	if pos == global_position:
 		die()
 
 func die():
