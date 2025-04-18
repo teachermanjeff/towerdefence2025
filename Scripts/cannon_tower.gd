@@ -25,6 +25,7 @@ func sort_ascending(a, b):
 	return false
 
 func _on_aoe_body_entered(body: Node2D) -> void:
+	arr = []
 	enemy = body
 	looking_at = true
 
@@ -32,7 +33,7 @@ func _on_aoe_body_entered(body: Node2D) -> void:
 		arr.append((tower_top.position - x.global_position).length())
 	print(arr)
 	
-	arr.sort_custom(sort_ascending)
+	arr.bsearch(sort_ascending)
 	print(arr)
 
 	while looking_at == true:
