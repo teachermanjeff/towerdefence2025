@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bk3kyhfr2jcoo"]
+
+[ext_resource type="PackedScene" uid="uid://dk7b07i6fmn5m" path="res://Scenes/ui.tscn" id="1_0ehpy"]
+[ext_resource type="PackedScene" uid="uid://d1v2ens30svvm" path="res://Scenes/towers.tscn" id="1_6j040"]
+[ext_resource type="Script" uid="uid://b33h0umd5tfud" path="res://Scripts/path_2d.gd" id="3_6j040"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8od7v"]
+size = Vector2(477, 55)
+
+[sub_resource type="Curve2D" id="Curve2D_6j040"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 494, 4, 0, 0, 0, 0, -7, 50, 0, 0, 0, 0, 489, 52)
+}
+point_count = 4
+
+[node name="Dev Level" type="Node2D"]
+
+[node name="Placable Area" type="Area2D" parent="." groups=["Placable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Placable Area"]
+position = Vector2(266.38, 631)
+shape = SubResource("RectangleShape2D_8od7v")
+
+[node name="UI" parent="." instance=ExtResource("1_0ehpy")]
+metadata/_edit_use_anchors_ = true
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(21.855, 530)
+curve = SubResource("Curve2D_6j040")
+script = ExtResource("3_6j040")
+
+[node name="Towers" parent="." instance=ExtResource("1_6j040")]
+
+[connection signal="mouse_entered" from="Placable Area" to="Towers" method="_on_placable_area_mouse_entered"]
+[connection signal="mouse_exited" from="Placable Area" to="Towers" method="_on_placable_area_mouse_exited"]
