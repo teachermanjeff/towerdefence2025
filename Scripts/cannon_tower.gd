@@ -19,25 +19,26 @@ func _process(delta: float) -> void:
 		#$CannonTop.look_at(get_global_mouse_position()) # Debug
 		tower_top.rotate(deg_to_rad(-90))
 
+	if looking_at == true:
+		await get_tree().create_timer(fireSpeed).timeout
+		fire(enemy)
+		print("1")
+
 func sort_ascending(a, b):
 	if a[1] < b[1]:
 		return true
 	return false
 
 func _on_aoe_body_entered(body: Node2D) -> void:
+	arr = []
 	enemy = body
+	print(enemy)
 	looking_at = true
 
 	for x in aoe.get_overlapping_bodies():
 		arr.append((tower_top.position - x.global_position).length())
+	arr.bsearch(sort_ascending)
 	print(arr)
-	
-	arr.sort_custom(sort_ascending)
-	print(arr)
-
-	while looking_at == true:
-		fire(enemy)
-		await get_tree().create_timer(fireSpeed).timeout
 
 func _on_aoe_body_exited(body: Node2D) -> void:
 	looking_at = false
@@ -51,4 +52,5 @@ func fire(target):
 	muzzle_flash.visible = false
 
 	# Deal Damage
-	enemy.get_parent().health -= damage
+	#print(enemy)
+	#enemy.get_parent().health -= damage

@@ -14,4 +14,4 @@ func _process(delta: float) -> void:
 		die()
 
 func die():
-	queue_free()
+	call_deferred("free")
