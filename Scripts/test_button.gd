@@ -28,8 +28,6 @@ func _process(delta: float) -> void:
 
 		aoe_collision.visible = true
 		deadzone_collision.visible = true
-		
-		print(aoe_collision.visible, deadzone_collision.visible)
 
 	# Return to origin if tower is placed
 	if Input.is_action_pressed("Left Click") and Global.is_picked_up == true and Global.within_placable == true and Global.is_placable == true and focused == true:
