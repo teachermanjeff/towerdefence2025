@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://yjuc1nhlagqi"]
+
+[ext_resource type="Texture2D" uid="uid://bhipwtb31s372" path="res://Images/tower_base.png" id="1_5xbaa"]
+[ext_resource type="Script" uid="uid://cv0olor4i3syg" path="res://Scripts/cannon_tower.gd" id="1_oclca"]
+[ext_resource type="Texture2D" uid="uid://dgreovrgrg2s8" path="res://Images/CannonTop.png" id="2_oclca"]
+[ext_resource type="Texture2D" uid="uid://ba3mda301mjgk" path="res://Images/Cannon_fire.png" id="4_40qog"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ul85c"]
+radius = 83.2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_40qog"]
+radius = 9.33333
+
+[node name="Cannon Tower" type="Node2D" node_paths=PackedStringArray("tower_top", "muzzle_flash", "timer", "aoe")]
+rotation = 3.14159
+scale = Vector2(2.5, 2.5)
+script = ExtResource("1_oclca")
+tower_top = NodePath("CannonTop")
+muzzle_flash = NodePath("CannonTop/Muzzle Flash")
+timer = NodePath("Cooldown Timer")
+aoe = NodePath("AOE")
+fire_speed = 1.0
+damage = 5.0
+
+[node name="Base" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_5xbaa")
+
+[node name="CannonTop" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_oclca")
+
+[node name="Muzzle Flash" type="Sprite2D" parent="CannonTop"]
+visible = false
+texture_filter = 1
+position = Vector2(-3.95488e-05, 15.6)
+texture = ExtResource("4_40qog")
+
+[node name="AOE" type="Area2D" parent="." groups=["Placable"]]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AOE"]
+shape = SubResource("CircleShape2D_ul85c")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="Deadzone" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone"]
+shape = SubResource("CircleShape2D_40qog")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Cooldown Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="AOE" to="." method="_on_aoe_body_entered"]
+[connection signal="body_exited" from="AOE" to="." method="_on_aoe_body_exited"]
+[connection signal="timeout" from="Cooldown Timer" to="." method="_on_cooldown_timer_timeout"]

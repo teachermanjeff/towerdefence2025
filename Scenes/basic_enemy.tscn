@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://ss4dlgtw0hm4"]
+
+[ext_resource type="Script" uid="uid://3ek34bl1ykdt" path="res://Scripts/basic_enemy.gd" id="1_6pvwk"]
+[ext_resource type="Texture2D" uid="uid://0ipgl0do0k73" path="res://Images/Insect one animations/insect_green_walk_one.png" id="2_dhrsy"]
+[ext_resource type="Texture2D" uid="uid://fjrlk3s2w2da" path="res://Images/Insect one animations/insect_green_walk_two.png" id="3_nk2ac"]
+[ext_resource type="Texture2D" uid="uid://ht8osv2rk2nc" path="res://Images/Insect one animations/insect_green_walk_three.png" id="4_h7iov"]
+[ext_resource type="Texture2D" uid="uid://b75327tslu0h" path="res://Images/Insect one animations/insect_green_walk_four.png" id="5_n7d1f"]
+[ext_resource type="Texture2D" uid="uid://cnhhvfqd3171y" path="res://Images/Insect one animations/insect_green_walk_five.png" id="6_62ls6"]
+[ext_resource type="Texture2D" uid="uid://chan5fxp6b41g" path="res://Images/Insect one animations/insect_green_walk_six.png" id="7_gw7x3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jlwu0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dhrsy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nk2ac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h7iov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n7d1f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_62ls6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gw7x3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f0pfe"]
+radius = 12.0
+height = 32.0
+
+[node name="Basic Enemy" type="PathFollow2D" node_paths=PackedStringArray("animation")]
+loop = false
+script = ExtResource("1_6pvwk")
+animation = NodePath("CharacterBody2D/AnimatedSprite2D")
+health = 1.0
+speed = 1.0
+value = 1
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Enemy"]]
+rotation = 1.5708
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_jlwu0")
+frame_progress = 0.689297
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_f0pfe")
