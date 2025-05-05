@@ -36,9 +36,6 @@ func _process(delta: float) -> void:
 		cooldown = true
 		timer.start()
 
-
-	print(looking_at)
-
 func fire(target):
 
 	# Deal Damage
