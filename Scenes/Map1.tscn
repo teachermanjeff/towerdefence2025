@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://f0a11o1bdc5k"]
+
+[ext_resource type="Texture2D" uid="uid://cub5ghftr8ysg" path="res://Maps/textures/map2.png" id="1_rad52"]
+[ext_resource type="Script" uid="uid://b33h0umd5tfud" path="res://Scripts/path_2d.gd" id="2_4ov7l"]
+[ext_resource type="PackedScene" uid="uid://dk7b07i6fmn5m" path="res://Scenes/ui.tscn" id="3_2t7xj"]
+[ext_resource type="PackedScene" uid="uid://d1v2ens30svvm" path="res://Scenes/towers.tscn" id="4_2t7xj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0gvh"]
+size = Vector2(111.5, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j556s"]
+size = Vector2(106.545, 101.25)
+
+[sub_resource type="Curve2D" id="Curve2D_3wee7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 67, -45, 0, 0, 0, 0, 255, 129, 0, 0, 0, 0, 400, 265, 0, 0, 0, 0, 453, 361, 0, 0, 0, 0, 457, 474, 0, 0, 0, 0, 420, 556, 0, 0, 0, 0, 310, 614, 0, 0, 0, 0, 193, 682, 0, 0, 0, 0, 170, 729, 0, 0, 0, 0, 186, 791, 0, 0, 0, 0, 271, 855, 0, 0, 0, 0, 365, 898, 0, 0, 0, 0, 505, 958, 0, 0, 0, 0, 607, 1013)
+}
+point_count = 14
+
+[node name="Map 1" type="Node2D"]
+
+[node name="Placeable Area" type="Area2D" parent="." groups=["Placable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Placeable Area"]
+position = Vector2(225, 392)
+rotation = 0.0258853
+shape = SubResource("RectangleShape2D_s0gvh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Placeable Area"]
+position = Vector2(121, 269)
+rotation = -0.778187
+scale = Vector2(1.04381, 1.09891)
+shape = SubResource("RectangleShape2D_j556s")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Placeable Area"]
+position = Vector2(450, 684)
+rotation = -1.45101
+shape = SubResource("RectangleShape2D_j556s")
+
+[node name="CollisionShape2D4" type="CollisionPolygon2D" parent="Placeable Area"]
+position = Vector2(58, 847)
+rotation = 0.655341
+polygon = PackedVector2Array(-51.1387, -45.1976, 57.9424, -55.8899, 58.1025, 8.31274, -18.9864, 68.8297, -58.1733, 19.4902)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Placeable Area"]
+position = Vector2(82, 493)
+rotation = 0.880299
+shape = SubResource("RectangleShape2D_j556s")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Placeable Area"]
+position = Vector2(423.997, 88.2691)
+rotation = -0.817498
+shape = SubResource("RectangleShape2D_j556s")
+
+[node name="Map" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(10, 9.28125)
+texture = ExtResource("1_rad52")
+centered = false
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, -3.23251)
+scale = Vector2(1, 0.928166)
+curve = SubResource("Curve2D_3wee7")
+script = ExtResource("2_4ov7l")
+
+[node name="UI" parent="." instance=ExtResource("3_2t7xj")]
+
+[node name="Towers" parent="." instance=ExtResource("4_2t7xj")]
+
+[connection signal="mouse_entered" from="Placeable Area" to="Towers" method="_on_placeable_area_mouse_entered"]
+[connection signal="mouse_exited" from="Placeable Area" to="Towers" method="_on_placeable_area_mouse_exited"]
