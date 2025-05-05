@@ -48,7 +48,7 @@ func fire(target):
 	muzzle_flash.visible = false
 
 	# Deal Damage
-	enemy.get_parent().health -= damage
+	enemy.health -= damage
 
 func _on_cooldown_timer_timeout() -> void:
 	cooldown = false

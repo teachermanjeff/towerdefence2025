@@ -4,10 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://fdiysgj5dk8g" path="res://Images/bug3-1.png" id="1_vdags"]
 [ext_resource type="Texture2D" uid="uid://1vriepyxlfej" path="res://Images/bug3-2.png" id="2_m8xkl"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u0ks7"]
-radius = 7.0
-height = 20.0
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_fsd0j"]
 animations = [{
 "frames": [{
@@ -22,22 +18,25 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u0ks7"]
+radius = 7.0
+height = 20.0
+
 [node name="Big Enemy" type="PathFollow2D" node_paths=PackedStringArray("animation") groups=["Enemy"]]
 loop = false
 script = ExtResource("1_m8xkl")
-animation = NodePath("CharacterBody2D/AnimatedSprite2D")
+animation = NodePath("AnimatedSprite2D")
 health = 10.0
 speed = 0.5
 value = 5
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-rotation = 1.5708
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CapsuleShape2D_u0ks7")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_fsd0j")
 frame_progress = 0.689922
 speed_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_u0ks7")

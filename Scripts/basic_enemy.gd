@@ -21,4 +21,4 @@ func _process(delta: float) -> void:
 
 func die():
 	Global.money += value
-	call_deferred("free")
+	queue_free()

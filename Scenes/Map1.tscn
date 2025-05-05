@@ -58,15 +58,33 @@ scale = Vector2(10, 9.28125)
 texture = ExtResource("1_rad52")
 centered = false
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="Path2D" type="Path2D" parent="." node_paths=PackedStringArray("basic_spawn_timer", "big_spawn_timer", "fast_spawn_timer")]
 position = Vector2(0, -3.23251)
 scale = Vector2(1, 0.928166)
 curve = SubResource("Curve2D_3wee7")
 script = ExtResource("2_4ov7l")
+basic_spawn_rate = 3.0
+big_spawn_rate = 10.0
+fast_spawn_rate = 5.0
+basic_spawn_timer = NodePath("../Basic Spawn Timer")
+big_spawn_timer = NodePath("../Big Spawn Timer")
+fast_spawn_timer = NodePath("../Fast Spawn Timer")
 
 [node name="UI" parent="." instance=ExtResource("3_2t7xj")]
 
 [node name="Towers" parent="." instance=ExtResource("4_2t7xj")]
 
+[node name="Basic Spawn Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Big Spawn Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Fast Spawn Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="mouse_entered" from="Placeable Area" to="Towers" method="_on_placeable_area_mouse_entered"]
 [connection signal="mouse_exited" from="Placeable Area" to="Towers" method="_on_placeable_area_mouse_exited"]
+[connection signal="timeout" from="Basic Spawn Timer" to="Path2D" method="_on_basic_spawn_timer_timeout"]
+[connection signal="timeout" from="Big Spawn Timer" to="Path2D" method="_on_big_spawn_timer_timeout"]
+[connection signal="timeout" from="Fast Spawn Timer" to="Path2D" method="_on_fast_spawn_timer_timeout"]

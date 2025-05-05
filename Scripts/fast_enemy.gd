@@ -18,9 +18,7 @@ func _process(delta: float) -> void:
 
 	if pos == global_position:
 		die()
-	
-	
 
 func die():
 	Global.money += value
-	call_deferred("free")
+	queue_free()
