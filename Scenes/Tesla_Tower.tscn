@@ -1,15 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5ljk2vd7tdkr"]
+[gd_scene load_steps=6 format=3 uid="uid://b5ljk2vd7tdkr"]
 
+[ext_resource type="Script" uid="uid://dqrqkbv5rpju6" path="res://Scripts/tesla_tower.gd" id="1_euv28"]
 [ext_resource type="Texture2D" uid="uid://bhipwtb31s372" path="res://Images/tower_base.png" id="1_i8kcp"]
 [ext_resource type="Texture2D" uid="uid://daknya0c8bkuu" path="res://Images/TeslaTop.png" id="2_lrvko"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_euv28"]
-radius = 46.8
+radius = 126.001
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7wa64"]
-radius = 21.2038
+radius = 14.8
 
-[node name="Node2D" type="Node2D"]
+[node name="Tesla Tower" type="Node2D" node_paths=PackedStringArray("tower_bottom", "timer", "aoe")]
+script = ExtResource("1_euv28")
+tower_bottom = NodePath("Base")
+timer = NodePath("Cooldown Timer")
+aoe = NodePath("AOE")
+fire_speed = 0.1
+damage = 0.1
 
 [node name="Top" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -21,14 +28,22 @@ texture_filter = 1
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_i8kcp")
 
-[node name="AOE" type="Area2D" parent="Base" groups=["Placable"]]
+[node name="AOE" type="Area2D" parent="." groups=["Placable"]]
+visible = false
+scale = Vector2(2.5, 2.5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/AOE"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AOE"]
 shape = SubResource("CircleShape2D_euv28")
 debug_color = Color(1, 1, 1, 0.42)
 
-[node name="Deadzone" type="Area2D" parent="Base"]
+[node name="Deadzone" type="Area2D" parent="."]
+visible = false
+scale = Vector2(2.5, 2.5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/Deadzone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone"]
 shape = SubResource("CircleShape2D_7wa64")
 debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Cooldown Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Cooldown Timer" to="." method="_on_cooldown_timer_timeout"]

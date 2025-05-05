@@ -1,7 +1,6 @@
 extends Node2D
 
-@export var tower_top : Sprite2D
-@export var muzzle_flash : Sprite2D
+@export var tower_bottom : Sprite2D
 @export var timer : Timer
 
 @export var aoe : Area2D
@@ -18,6 +17,7 @@ var targets = []
 func _ready() -> void:
 	timer.set_wait_time(fire_speed)
 
+
 func _process(delta: float) -> void:
 
 	for x in aoe.get_overlapping_areas():
@@ -29,10 +29,6 @@ func _process(delta: float) -> void:
 	if len(targets) <= 1:
 		looking_at = true
 
-	if looking_at == true and enemy != null:
-		tower_top.look_at(enemy.global_position)
-		#$CannonTop.look_at(get_global_mouse_position()) # Debug
-		tower_top.rotate(deg_to_rad(-90))
 
 	if cooldown == false and enemy != null and looking_at == true:
 		fire(enemy)
@@ -44,11 +40,6 @@ func _process(delta: float) -> void:
 	print(looking_at)
 
 func fire(target):
-
-	# Muzzle Flash
-	muzzle_flash.visible = true
-	await get_tree().create_timer(0.1).timeout
-	muzzle_flash.visible = false
 
 	# Deal Damage
 	enemy.get_parent().health -= damage

@@ -1,36 +1,50 @@
 [gd_scene load_steps=6 format=3 uid="uid://dyxlu3e3pml34"]
 
+[ext_resource type="Script" uid="uid://hox3xfxlcpth" path="res://Scripts/missile_tower.gd" id="1_ec556"]
 [ext_resource type="Texture2D" uid="uid://bhipwtb31s372" path="res://Images/tower_base.png" id="1_jg6pu"]
 [ext_resource type="Texture2D" uid="uid://bfn7dk7aq6nbp" path="res://Images/Rocket_loaded.png" id="2_eemth"]
-[ext_resource type="Script" uid="uid://d04mxyydxw5tt" path="res://Scripts/rocket.gd" id="3_ec556"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ec556"]
-radius = 46.8
+radius = 99.6393
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ig4md"]
-radius = 21.2038
+radius = 9.6
 
-[node name="Node2D" type="Node2D"]
+[node name="Missle Tower" type="Node2D" node_paths=PackedStringArray("rocket", "tower_bottom", "timer", "aoe")]
+script = ExtResource("1_ec556")
+rocket = NodePath("Rocket")
+tower_bottom = NodePath("Base")
+timer = NodePath("Cooldown Timer")
+aoe = NodePath("AOE")
+fire_speed = 2.0
+damage = 5.0
 
 [node name="Base" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_jg6pu")
 
-[node name="AOE" type="Area2D" parent="Base" groups=["Placable"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/AOE"]
-shape = SubResource("CircleShape2D_ec556")
-debug_color = Color(1, 1, 1, 0.42)
-
-[node name="Deadzone" type="Area2D" parent="Base"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/Deadzone"]
-shape = SubResource("CircleShape2D_ig4md")
-debug_color = Color(1, 0, 0, 0.419608)
-
 [node name="Rocket" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_eemth")
-script = ExtResource("3_ec556")
+
+[node name="AOE" type="Area2D" parent="." groups=["Placable"]]
+visible = false
+scale = Vector2(2.5, 2.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AOE"]
+shape = SubResource("CircleShape2D_ec556")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="Deadzone" type="Area2D" parent="."]
+visible = false
+scale = Vector2(2.5, 2.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone"]
+shape = SubResource("CircleShape2D_ig4md")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Cooldown Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Cooldown Timer" to="." method="_on_cooldown_timer_timeout"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chan5fxp6b41g"
-path="res://.godot/imported/insect_green_walk_six.png-395aebbc5c76d931b9578d6ac693ac38.ctex"
+uid="uid://wp33ux2f51st"
+path="res://.godot/imported/healthbar_RED.png-17506843f5dca37becdb76cd8e710c1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Insect one animations/insect_green_walk_six.png"
-dest_files=["res://.godot/imported/insect_green_walk_six.png-395aebbc5c76d931b9578d6ac693ac38.ctex"]
+source_file="res://Images/healthbar_RED.png"
+dest_files=["res://.godot/imported/healthbar_RED.png-17506843f5dca37becdb76cd8e710c1d.ctex"]
 
 [params]
 
