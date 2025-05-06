@@ -40,9 +40,6 @@ func _process(delta: float) -> void:
 		cooldown = true
 		timer.start()
 
-
-	print(looking_at)
-
 func fire(target):
 
 	# Muzzle Flash
@@ -51,7 +48,8 @@ func fire(target):
 	muzzle_flash.visible = false
 
 	# Deal Damage
-	enemy.get_parent().health -= damage
+	enemy.health -= damage
+	enemy.health_bar.value -= damage
 
 func _on_cooldown_timer_timeout() -> void:
 	cooldown = false

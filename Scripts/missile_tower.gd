@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var rocket : Sprite2D
+@export var rocket_empty : Sprite2D
 @export var tower_bottom : Sprite2D
 @export var timer : Timer
 
@@ -31,7 +32,7 @@ func _process(delta: float) -> void:
 		looking_at = true
 
 	if looking_at == true and enemy != null:
-		rocket.look_at(enemy.global_position)
+		rocket_empty.look_at(enemy.global_position)
 
 
 	if cooldown == false and enemy != null and looking_at == true:
@@ -40,13 +41,11 @@ func _process(delta: float) -> void:
 		cooldown = true
 		timer.start()
 
-
-	print(looking_at)
-
 func fire(target):
 
 	# Deal Damage
-	enemy.get_parent().health -= damage
+	enemy.health -= damage
+	enemy.health_bar.value -= damage
 	rocket.visible = false
 
 func _on_cooldown_timer_timeout() -> void:

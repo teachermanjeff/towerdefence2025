@@ -1,6 +1,7 @@
 extends PathFollow2D
 
 @export var animation : AnimatedSprite2D
+@export var health_bar : TextureProgressBar
 
 @export var health : float
 @export var speed : float
@@ -8,6 +9,8 @@ extends PathFollow2D
 
 func _ready() -> void:
 	animation.set_animation("default")
+	health_bar.max_value = health
+	health_bar.value = health
 
 func _process(delta: float) -> void:
 	var pos = global_position
@@ -18,9 +21,7 @@ func _process(delta: float) -> void:
 
 	if pos == global_position:
 		die()
-	
-	
 
 func die():
 	Global.money += value
-	call_deferred("free")
+	queue_free()

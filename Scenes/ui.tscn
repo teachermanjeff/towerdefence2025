@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dk7b07i6fmn5m"]
+[gd_scene load_steps=17 format=3 uid="uid://dk7b07i6fmn5m"]
 
 [ext_resource type="Theme" uid="uid://c5cgbi7v3h3px" path="res://Other/Themes/hotbar_theme.tres" id="1_jxero"]
 [ext_resource type="Script" uid="uid://baam28arlek2g" path="res://Scripts/cannon_button.gd" id="4_m78vo"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://daknya0c8bkuu" path="res://Images/TeslaTop.png" id="6_ryf15"]
 [ext_resource type="Script" uid="uid://dj0oxpogqjnis" path="res://Scripts/missle_tower_button.gd" id="7_ryf15"]
 [ext_resource type="Texture2D" uid="uid://bfn7dk7aq6nbp" path="res://Images/Rocket_loaded.png" id="8_ryf15"]
+[ext_resource type="Script" uid="uid://ceciadyfh4ymr" path="res://Scripts/money_label.gd" id="9_mmixe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m78vo"]
 radius = 83.2
@@ -26,6 +27,9 @@ radius = 99.6393
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g0wmg"]
 radius = 9.6
+
+[sub_resource type="LabelSettings" id="LabelSettings_mmixe"]
+font_size = 100
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -58,12 +62,14 @@ offset_bottom = 59.0
 
 [node name="Button" type="Button" parent="Hotbar/Towers/Cannon Tower" node_paths=PackedStringArray("sprite", "aoe", "aoe_collision", "deadzone", "deadzone_collision")]
 layout_mode = 2
+theme = ExtResource("1_jxero")
 script = ExtResource("4_m78vo")
 sprite = NodePath("Cannon")
 aoe = NodePath("Cannon/AOE")
 aoe_collision = NodePath("Cannon/AOE/CollisionShape2D")
 deadzone = NodePath("Cannon/Deadzone")
 deadzone_collision = NodePath("Cannon/Deadzone/CollisionShape2D")
+cost = 5
 
 [node name="Cannon" type="Sprite2D" parent="Hotbar/Towers/Cannon Tower/Button"]
 texture_filter = 1
@@ -79,16 +85,24 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_m78vo")
 
 [node name="AOE" type="Area2D" parent="Hotbar/Towers/Cannon Tower/Button/Cannon" groups=["Placable"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Towers/Cannon Tower/Button/Cannon/AOE"]
+visible = false
 shape = SubResource("CircleShape2D_m78vo")
 debug_color = Color(1, 1, 1, 0.42)
 
 [node name="Deadzone" type="Area2D" parent="Hotbar/Towers/Cannon Tower/Button/Cannon"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Towers/Cannon Tower/Button/Cannon/Deadzone"]
+visible = false
 shape = SubResource("CircleShape2D_smcll")
 debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Cost Label" type="Label" parent="Hotbar/Towers/Cannon Tower"]
+layout_mode = 2
+text = "$5"
+horizontal_alignment = 1
 
 [node name="Tesla Tower" type="PanelContainer" parent="Hotbar/Towers"]
 layout_mode = 0
@@ -105,6 +119,7 @@ aoe = NodePath("Top/AOE")
 aoe_collision = NodePath("Top/AOE/CollisionShape2D")
 deadzone = NodePath("Top/Deadzone")
 deadzone_collision = NodePath("Top/Deadzone/CollisionShape2D")
+cost = 7
 
 [node name="Top" type="Sprite2D" parent="Hotbar/Towers/Tesla Tower/Button"]
 texture_filter = 1
@@ -118,16 +133,24 @@ texture_filter = 1
 texture = ExtResource("4_q7pk6")
 
 [node name="AOE" type="Area2D" parent="Hotbar/Towers/Tesla Tower/Button/Top" groups=["Placable"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Towers/Tesla Tower/Button/Top/AOE"]
+visible = false
 shape = SubResource("CircleShape2D_ryf15")
 debug_color = Color(1, 1, 1, 0.42)
 
 [node name="Deadzone" type="Area2D" parent="Hotbar/Towers/Tesla Tower/Button/Top"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Towers/Tesla Tower/Button/Top/Deadzone"]
+visible = false
 shape = SubResource("CircleShape2D_mmixe")
 debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Cost Label" type="Label" parent="Hotbar/Towers/Tesla Tower"]
+layout_mode = 2
+text = "$7"
+horizontal_alignment = 1
 
 [node name="Missle Tower" type="PanelContainer" parent="Hotbar/Towers"]
 layout_mode = 0
@@ -144,6 +167,7 @@ aoe = NodePath("Base/AOE")
 aoe_collision = NodePath("Base/AOE/CollisionShape2D")
 deadzone = NodePath("Base/Deadzone")
 deadzone_collision = NodePath("Base/Deadzone/CollisionShape2D")
+cost = 10
 
 [node name="Base" type="Sprite2D" parent="Hotbar/Towers/Missle Tower/Button"]
 texture_filter = 1
@@ -157,16 +181,32 @@ texture_filter = 1
 texture = ExtResource("8_ryf15")
 
 [node name="AOE" type="Area2D" parent="Hotbar/Towers/Missle Tower/Button/Base" groups=["Placable"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Towers/Missle Tower/Button/Base/AOE"]
+visible = false
 shape = SubResource("CircleShape2D_nt8jn")
 debug_color = Color(1, 1, 1, 0.42)
 
 [node name="Deadzone" type="Area2D" parent="Hotbar/Towers/Missle Tower/Button/Base"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Towers/Missle Tower/Button/Base/Deadzone"]
+visible = false
 shape = SubResource("CircleShape2D_g0wmg")
 debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Cost Label" type="Label" parent="Hotbar/Towers/Missle Tower"]
+layout_mode = 2
+text = "$10"
+horizontal_alignment = 1
+
+[node name="Money" type="Label" parent="."]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 121.0
+text = "$#######"
+label_settings = SubResource("LabelSettings_mmixe")
+script = ExtResource("9_mmixe")
 
 [connection signal="pressed" from="Hotbar/Towers/Cannon Tower/Button" to="Hotbar/Towers/Cannon Tower/Button" method="_on_pressed"]
 [connection signal="area_entered" from="Hotbar/Towers/Cannon Tower/Button/Cannon/Deadzone" to="Hotbar/Towers/Cannon Tower/Button" method="_on_deadzone_area_entered"]
