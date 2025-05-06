@@ -85,6 +85,7 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_m78vo")
 
 [node name="AOE" type="Area2D" parent="Hotbar/Towers/Cannon Tower/Button/Cannon" groups=["Placable"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Towers/Cannon Tower/Button/Cannon/AOE"]
 visible = false
@@ -132,6 +133,7 @@ texture_filter = 1
 texture = ExtResource("4_q7pk6")
 
 [node name="AOE" type="Area2D" parent="Hotbar/Towers/Tesla Tower/Button/Top" groups=["Placable"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Towers/Tesla Tower/Button/Top/AOE"]
 visible = false
@@ -179,6 +181,7 @@ texture_filter = 1
 texture = ExtResource("8_ryf15")
 
 [node name="AOE" type="Area2D" parent="Hotbar/Towers/Missle Tower/Button/Base" groups=["Placable"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbar/Towers/Missle Tower/Button/Base/AOE"]
 visible = false
