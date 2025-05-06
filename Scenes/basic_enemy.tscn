@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ss4dlgtw0hm4"]
+[gd_scene load_steps=12 format=3 uid="uid://ss4dlgtw0hm4"]
 
 [ext_resource type="Script" uid="uid://3ek34bl1ykdt" path="res://Scripts/basic_enemy.gd" id="1_6pvwk"]
 [ext_resource type="Texture2D" uid="uid://0ipgl0do0k73" path="res://Images/Insect one animations/insect_green_walk_one.png" id="2_dhrsy"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b75327tslu0h" path="res://Images/Insect one animations/insect_green_walk_four.png" id="5_n7d1f"]
 [ext_resource type="Texture2D" uid="uid://cnhhvfqd3171y" path="res://Images/Insect one animations/insect_green_walk_five.png" id="6_62ls6"]
 [ext_resource type="Texture2D" uid="uid://chan5fxp6b41g" path="res://Images/Insect one animations/insect_green_walk_six.png" id="7_gw7x3"]
+[ext_resource type="Texture2D" uid="uid://wp33ux2f51st" path="res://Images/healthbar_RED.png" id="8_nk2ac"]
+[ext_resource type="Texture2D" uid="uid://1qr2pwlfb04g" path="res://Images/healthbar_GRN.png" id="9_h7iov"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jlwu0"]
 animations = [{
@@ -38,11 +40,12 @@ animations = [{
 radius = 12.0
 height = 32.0
 
-[node name="Basic Enemy" type="PathFollow2D" node_paths=PackedStringArray("animation") groups=["Enemy"]]
+[node name="Basic Enemy" type="PathFollow2D" node_paths=PackedStringArray("animation", "health_bar") groups=["Enemy"]]
 loop = false
 script = ExtResource("1_6pvwk")
 animation = NodePath("AnimatedSprite2D")
-health = 1.0
+health_bar = NodePath("Health Bar")
+health = 100.0
 speed = 1.0
 value = 1
 
@@ -56,3 +59,12 @@ frame_progress = 0.689297
 position = Vector2(-1, -3.61999e-06)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_f0pfe")
+
+[node name="Health Bar" type="TextureProgressBar" parent="."]
+offset_left = -12.0
+offset_top = -16.0
+offset_right = 12.0
+offset_bottom = -13.0
+value = 100.0
+texture_under = ExtResource("8_nk2ac")
+texture_progress = ExtResource("9_h7iov")

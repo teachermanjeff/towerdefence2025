@@ -44,6 +44,7 @@ func fire(target):
 
 	# Deal Damage
 	enemy.health -= damage
+	enemy.health_bar.value -= damage
 	rocket.visible = false
 
 func _on_cooldown_timer_timeout() -> void:

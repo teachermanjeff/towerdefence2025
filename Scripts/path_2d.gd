@@ -12,11 +12,17 @@ var enemy_basic = preload("res://Scenes/basic_enemy.tscn")
 var enemy_big  = preload("res://Scenes/big_enemy.tscn")
 var enemy_fast = preload("res://Scenes/fast_enemy.tscn")
 
+var decrease = 0.99997
+
 func _process(delta: float) -> void:
 
 	basic_spawn_timer.set_wait_time(basic_spawn_rate)
 	big_spawn_timer.set_wait_time(big_spawn_rate)
 	fast_spawn_timer.set_wait_time(fast_spawn_rate)
+
+	basic_spawn_rate *= decrease
+	big_spawn_rate *= decrease
+	fast_spawn_rate *= decrease
 
 func spawn_enemy(enemy):
 	var enemy_temp = enemy.instantiate()

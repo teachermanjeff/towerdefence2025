@@ -49,6 +49,7 @@ func fire(target):
 
 	# Deal Damage
 	enemy.health -= damage
+	enemy.health_bar.value -= damage
 
 func _on_cooldown_timer_timeout() -> void:
 	cooldown = false

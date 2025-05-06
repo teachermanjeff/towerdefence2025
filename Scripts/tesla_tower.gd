@@ -17,7 +17,6 @@ var targets = []
 func _ready() -> void:
 	timer.set_wait_time(fire_speed)
 
-
 func _process(delta: float) -> void:
 
 	for x in aoe.get_overlapping_areas():
@@ -29,7 +28,6 @@ func _process(delta: float) -> void:
 	if len(targets) <= 1:
 		looking_at = true
 
-
 	if cooldown == false and enemy != null and looking_at == true:
 		fire(enemy)
 
@@ -40,6 +38,7 @@ func fire(target):
 
 	# Deal Damage
 	enemy.health -= damage
+	enemy.health_bar.value -= damage
 
 func _on_cooldown_timer_timeout() -> void:
 	cooldown = false

@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d5v63bn87ii8"]
+[gd_scene load_steps=9 format=3 uid="uid://d5v63bn87ii8"]
 
 [ext_resource type="Script" uid="uid://chv67ulopkk2c" path="res://Scripts/fast_enemy.gd" id="1_bo4qn"]
 [ext_resource type="Texture2D" uid="uid://dbcv715so2efd" path="res://Images/bug2.png" id="2_j8ipw"]
 [ext_resource type="Texture2D" uid="uid://b7tel5lbkm1m2" path="res://Images/insect_2-2.png" id="3_at12x"]
 [ext_resource type="Texture2D" uid="uid://dchdh2km4eong" path="res://Images/insect_2-3.png" id="4_jo0ji"]
+[ext_resource type="Texture2D" uid="uid://wp33ux2f51st" path="res://Images/healthbar_RED.png" id="5_at12x"]
+[ext_resource type="Texture2D" uid="uid://1qr2pwlfb04g" path="res://Images/healthbar_GRN.png" id="6_jo0ji"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1cdjm"]
 animations = [{
@@ -25,12 +27,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_bo4qn"]
 radius = 9.0
 
-[node name="Fast Enemy" type="PathFollow2D" node_paths=PackedStringArray("animation") groups=["Enemy"]]
+[node name="Fast Enemy" type="PathFollow2D" node_paths=PackedStringArray("animation", "health_bar") groups=["Enemy"]]
 loop = false
 script = ExtResource("1_bo4qn")
 animation = NodePath("AnimatedSprite2D")
-health = 1.0
-speed = 3.0
+health_bar = NodePath("Health Bar")
+health = 100.0
+speed = 2.5
 value = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -42,3 +45,12 @@ frame_progress = 0.389137
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CircleShape2D_bo4qn")
+
+[node name="Health Bar" type="TextureProgressBar" parent="."]
+offset_left = -12.0
+offset_top = -13.0
+offset_right = 12.0
+offset_bottom = -10.0
+value = 100.0
+texture_under = ExtResource("5_at12x")
+texture_progress = ExtResource("6_jo0ji")

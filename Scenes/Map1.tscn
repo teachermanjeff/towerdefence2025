@@ -83,8 +83,12 @@ autostart = true
 [node name="Fast Spawn Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="Increase Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="mouse_entered" from="Placeable Area" to="Towers" method="_on_placeable_area_mouse_entered"]
 [connection signal="mouse_exited" from="Placeable Area" to="Towers" method="_on_placeable_area_mouse_exited"]
 [connection signal="timeout" from="Basic Spawn Timer" to="Path2D" method="_on_basic_spawn_timer_timeout"]
 [connection signal="timeout" from="Big Spawn Timer" to="Path2D" method="_on_big_spawn_timer_timeout"]
 [connection signal="timeout" from="Fast Spawn Timer" to="Path2D" method="_on_fast_spawn_timer_timeout"]
+[connection signal="timeout" from="Increase Timer" to="Path2D" method="_on_increase_timer_timeout"]

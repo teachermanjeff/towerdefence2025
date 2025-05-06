@@ -17,7 +17,7 @@ tower_bottom = NodePath("Base")
 timer = NodePath("Cooldown Timer")
 aoe = NodePath("AOE")
 fire_speed = 2.0
-damage = 5.0
+damage = 500.0
 
 [node name="Base" type="Sprite2D" parent="."]
 texture_filter = 1

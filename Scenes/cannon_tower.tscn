@@ -20,7 +20,7 @@ muzzle_flash = NodePath("CannonTop/Muzzle Flash")
 timer = NodePath("Cooldown Timer")
 aoe = NodePath("AOE")
 fire_speed = 1.0
-damage = 1.0
+damage = 100.0
 
 [node name="Base" type="Sprite2D" parent="."]
 texture_filter = 1
