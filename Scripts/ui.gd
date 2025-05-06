@@ -1,9 +1,8 @@
 extends Control
 
-signal is_placable(placable, not_placable)
+@export var health_bar : TextureProgressBar
+@export var health_label : Label
 
-func _on_area_2d_mouse_entered() -> void:
-	emit_signal("placable")
-
-func _on_area_2d_mouse_exited() -> void:
-	emit_signal("not_placable")
+func _process(delta: float) -> void:
+	health_bar.value = Global.health
+	health_label.set_text(str(Global.health) + "/100")

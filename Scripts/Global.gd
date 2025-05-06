@@ -7,3 +7,4 @@ var within_placable = false
 var selected 
 
 var money = 5
+var health = 100
