@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 func fire(target):
 
 	# Deal Damage
-	enemy.get_parent().health -= damage
+	enemy.health -= damage
 	rocket.visible = false
 
 func _on_cooldown_timer_timeout() -> void:

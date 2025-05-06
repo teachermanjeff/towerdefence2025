@@ -7,6 +7,8 @@ extends Button
 @export var deadzone : Area2D
 @export var deadzone_collision : CollisionShape2D
 
+@export var cost : int
+
 var tower_scene = preload("res://Scenes/Tesla_Tower.tscn")
 var focused = false
 
@@ -18,6 +20,12 @@ func _ready() -> void:
 		deadzone_collision.visible = false
 
 func _process(delta: float) -> void:
+
+	if Global.money < cost:
+		disabled = true
+
+	else:
+		disabled = false
 
 	# Get global mouse position
 	var mouse_pos = get_global_mouse_position()
@@ -44,6 +52,9 @@ func _on_pressed() -> void:
 	Global.is_picked_up = true
 	Global.selected = tower_scene
 	focused = true
+
+	# Subtract money
+	Global.money -= cost 
 
 # When deadzone entered make placable false
 func _on_deadzone_area_entered(area: Area2D) -> void:
