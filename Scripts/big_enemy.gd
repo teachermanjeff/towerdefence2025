@@ -6,6 +6,7 @@ extends PathFollow2D
 @export var health : float
 @export var speed : float
 @export var value : int
+@export var damage : int
 
 func _ready() -> void:
 	animation.set_animation("default")
@@ -20,6 +21,7 @@ func _process(delta: float) -> void:
 		die()
 
 	if pos == global_position:
+		Global.health -= damage
 		die()
 
 func die():

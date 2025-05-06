@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dk7b07i6fmn5m"]
+[gd_scene load_steps=21 format=3 uid="uid://dk7b07i6fmn5m"]
 
+[ext_resource type="Script" uid="uid://s8rnefemy2vx" path="res://Scripts/ui.gd" id="1_4vbiv"]
 [ext_resource type="Theme" uid="uid://c5cgbi7v3h3px" path="res://Other/Themes/hotbar_theme.tres" id="1_jxero"]
 [ext_resource type="Script" uid="uid://baam28arlek2g" path="res://Scripts/cannon_button.gd" id="4_m78vo"]
 [ext_resource type="Texture2D" uid="uid://bhipwtb31s372" path="res://Images/tower_base.png" id="4_q7pk6"]
@@ -9,6 +10,8 @@
 [ext_resource type="Script" uid="uid://dj0oxpogqjnis" path="res://Scripts/missle_tower_button.gd" id="7_ryf15"]
 [ext_resource type="Texture2D" uid="uid://bfn7dk7aq6nbp" path="res://Images/Rocket_loaded.png" id="8_ryf15"]
 [ext_resource type="Script" uid="uid://ceciadyfh4ymr" path="res://Scripts/money_label.gd" id="9_mmixe"]
+[ext_resource type="Texture2D" uid="uid://wp33ux2f51st" path="res://Images/healthbar_RED.png" id="10_g0wmg"]
+[ext_resource type="Texture2D" uid="uid://1qr2pwlfb04g" path="res://Images/healthbar_GRN.png" id="11_4vbiv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m78vo"]
 radius = 83.2
@@ -31,13 +34,19 @@ radius = 9.6
 [sub_resource type="LabelSettings" id="LabelSettings_mmixe"]
 font_size = 100
 
-[node name="UI" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_3r70p"]
+font_size = 25
+
+[node name="UI" type="Control" node_paths=PackedStringArray("health_bar", "health_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4vbiv")
+health_bar = NodePath("Health Bar")
+health_label = NodePath("Health")
 metadata/_edit_vertical_guides_ = [-4.0]
 
 [node name="Hotbar" type="TabContainer" parent="."]
@@ -207,6 +216,28 @@ offset_bottom = 121.0
 text = "$#######"
 label_settings = SubResource("LabelSettings_mmixe")
 script = ExtResource("9_mmixe")
+
+[node name="Health Bar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 861.0
+offset_right = 322.0
+offset_bottom = 864.0
+scale = Vector2(10.075, 10.075)
+value = 100.0
+texture_under = ExtResource("10_g0wmg")
+texture_progress = ExtResource("11_4vbiv")
+
+[node name="Health" type="Label" parent="."]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 860.0
+offset_right = 541.0
+offset_bottom = 933.0
+text = "100/100
+"
+label_settings = SubResource("LabelSettings_3r70p")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Hotbar/Towers/Cannon Tower/Button" to="Hotbar/Towers/Cannon Tower/Button" method="_on_pressed"]
 [connection signal="area_entered" from="Hotbar/Towers/Cannon Tower/Button/Cannon/Deadzone" to="Hotbar/Towers/Cannon Tower/Button" method="_on_deadzone_area_entered"]

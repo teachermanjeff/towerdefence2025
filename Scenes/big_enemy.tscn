@@ -32,6 +32,7 @@ health_bar = NodePath("Health Bar")
 health = 500.0
 speed = 0.5
 value = 5
+damage = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
